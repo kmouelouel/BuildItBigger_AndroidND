@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
         MobileAds.initialize(this,
                 "ca-app-pub-3940256099942544~3347511713");
 
+
         interstitialAd = new InterstitialAd(this);
         interstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
         interstitialAd.loadAd(new AdRequest.Builder().build());
