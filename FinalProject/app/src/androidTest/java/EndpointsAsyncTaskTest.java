@@ -3,16 +3,10 @@ import android.util.Log;
 import com.udacity.gradle.builditbigger.AsyncResponse;
 import com.udacity.gradle.builditbigger.EndpointsAsyncTask;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
 
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.ExecutionException;
+import static org.junit.Assert.assertNotNull; 
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-
-public class EndpointsAsyncTaskTest extends AndroidTestCase implements AsyncResponse {
+public class EndpointsAsyncTaskTest  implements AsyncResponse {
     private static final String TAG = "EndpointsAsyncTaskTest";
 
 
@@ -23,12 +17,18 @@ public class EndpointsAsyncTaskTest extends AndroidTestCase implements AsyncResp
         EndpointsAsyncTask testTask = new EndpointsAsyncTask(this);
         testTask.execute();
         try {
+
             result = testTask.get();
             Log.d(TAG, "Retrieved a non-empty string successfully: " + result);
         } catch (Exception e) {
+            Log.d(TAG, "Error in retrieving data: " + e.getMessage());
+
             e.printStackTrace();
         }
-        assertNotNull(result);
+        if(!result.isEmpty()){ assertNotNull(result);}
+        else  Log.d(TAG, "Retrieved an empty string");
+
+
 
     }
 
